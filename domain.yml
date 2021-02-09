@@ -1,0 +1,50 @@
+session_config:
+  session_expiration_time: 10
+  carry_over_slots_to_new_session: false
+intents:
+    - greet
+    - thankyou
+    - email_reply: {triggers: utter_email_reply}
+    - contact_reply: {triggers: utter_contact_reply}
+    - goodbye
+    - admission: {triggers: info_form}
+    - inform
+
+entities:
+- standard
+
+slots:
+  standard:
+    type: unfeaturized
+
+responses:
+    utter_greet:
+    - text: Hello! Welcome I am leena your virtual assistant.
+      buttons:
+      - title: 'Admission'
+        payload: '/admission{"intent":"Admission"}'
+      - title: 'Contact Email'
+        payload: '/email_reply{"intent":"Email"}'
+      - title: 'Contact Number'
+        payload: '/contact_reply{"intent":"Contact Number"}'
+ 
+    
+  
+    utter_contact_reply:
+    - text: You can try connecting on 4653132303 for more information
+    utter_email_reply:
+    - text: You can try connnecting on bsingh@gmail.com
+    utter_ask_standard:
+    - text: In which standard do you study?
+      buttons:
+      - title: '8'
+        payload: '/inform{"standard":"8"}'
+      - title: '9'
+        payload: '/inform{"standard":"9"}'
+      - title: '10'
+        payload: '/inform{"standard":"10"}'
+      - title: '11'
+        payload: '/inform{"standard":"12"}'
+      
+forms:
+- info_form    
